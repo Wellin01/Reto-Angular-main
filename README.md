@@ -14,8 +14,8 @@ Este proyecto es una aplicación frontend desarrollada con **Angular** que permi
 ## 🛠 Instalación y ejecución
 ### 1. Clonar el repositorio
 
-git clone https://github.com/tuusuario/gestor-productos-angular.git
-cd gestor-productos-angular
+git clone https://github.com/Wellin01/Reto-Angular-main.git
+cd Reto-Angular-main
 
 ### 2. Instalar dependencias
 npm install
