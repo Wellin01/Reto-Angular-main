@@ -23,12 +23,13 @@ npm install
 ### 3. Levantar el proyecto
 #### 3.1 Ingresar a la ruta de api y levantar json server
 cd api
+npm i -g json-server
 json-server --watch db.json --port 3000
 
-#### 2.2 Correr el proyecto
+#### 3.2 Correr el proyecto
 ng serve
 
-### Probar pyoyecto
+### 3.3 Probar pyoyecto
 Ingresar en un navegador a: http://localhost:4200
 
 📝 Licencia
