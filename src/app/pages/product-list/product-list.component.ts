@@ -120,14 +120,18 @@ export class ProductListComponent implements OnInit {
     const end = start + this.itemsPerPage;
     this.paginatedProducts = this.filteredProducts.slice(start, end);
   }
-
   applyFilters(): void {
-    const filtered = this.allProducts.filter(product =>
-      product.name.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      product.description.toLowerCase().includes(this.searchText.toLowerCase())
+    const search = this.searchText.toLowerCase();
+    this.filteredProducts = this.allProducts.filter(p =>
+      p.name.toLowerCase().includes(search) ||
+      p.description.toLowerCase().includes(search)
     );
 
-    this.filteredProducts = filtered.slice(0, this.itemsToShow);
+    this.currentPage = 1;
+    this.updatePaginatedProducts();
+  }
+
+  onItemsPerPageChange(): void {
     this.currentPage = 1;
     this.updatePaginatedProducts();
   }

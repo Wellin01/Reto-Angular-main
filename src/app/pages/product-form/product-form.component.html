@@ -95,14 +95,28 @@
     </div>
 
     <div class="form-buttons-row">
-      <div class="form-buttons-left">
-        <button type="button" class="btn-back" (click)="goBack()">↩ Atrás</button>
-      </div>
 
-      <div class="form-buttons-right">
-        <button type="button" class="btn-reset" (click)="resetForm()">Reiniciar</button>
-        <button type="submit" class="btn-submit">{{ editing ? 'Actualizar' : 'Agregar' }}</button>
-      </div>
+      <ng-container *ngIf="editing; else addButtons">
+        <div class="form-buttons-left">
+          <button type="button" class="btn-back" (click)="goBack()">
+            ← Cancelar
+          </button>
+        </div>
+        <div class="form-buttons-right">
+          <button type="submit" class="btn-submit">Actualizar</button>
+        </div>
+      </ng-container>
+
+      <ng-template #addButtons>
+        <div class="form-buttons-left">
+          <button type="button" class="btn-back" (click)="goBack()">← Atrás</button>
+        </div>
+        <div class="form-buttons-right">
+          <button type="button" class="btn-reset" (click)="resetForm()">Reiniciar</button>
+          <button type="submit" class="btn-submit">Agregar</button>
+        </div>
+      </ng-template>
+
     </div>
   </form>
   <app-success-modal *ngIf="showSuccessModal" [message]="successMessage" (onClose)="onModalClose()"></app-success-modal>
