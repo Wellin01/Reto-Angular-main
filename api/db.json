@@ -1,0 +1,76 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Cuentas de Ahorro",
+      "description": "Cuenta de Ahorro / Cuenta Sueldo / Depósitos a Plazo",
+      "logo": "https://cdn-icons-png.flaticon.com/512/5924/5924651.png",
+      "date_release": "2025-02-01",
+      "date_revision": "2026-02-01"
+    },
+    {
+      "id": "2",
+      "name": "Préstamos",
+      "description": "Préstamo Personal, Crédito Hipotecario",
+      "logo": "https://cdn-icons-png.flaticon.com/512/2543/2543323.png",
+      "date_release": "2024-01-01",
+      "date_revision": "2025-01-01"
+    },
+    {
+      "id": "3",
+      "name": "Tarjetas de Crédito",
+      "description": "Tarjeta de Crédito Visa y Mastercard",
+      "logo": "https://cdn-icons-png.flaticon.com/256/7801/7801674.png",
+      "date_release": "2024-03-01",
+      "date_revision": "2025-03-01"
+    },
+    {
+      "id": "4",
+      "name": "Seguros",
+      "description": "Seguro de Vida / Seguros de Tratamiento Oncológico",
+      "logo": "https://cdn-icons-png.flaticon.com/512/8945/8945503.png",
+      "date_release": "2025-04-01",
+      "date_revision": "2026-04-01"
+    },
+    {
+      "id": "5",
+      "name": "Inversiones",
+      "description": "Plazodolar",
+      "logo": "https://cdn-icons-png.flaticon.com/512/6231/6231587.png",
+      "date_release": "2025-04-01",
+      "date_revision": "2026-04-01"
+    },
+    {
+      "id": "6",
+      "name": "Servicios Adicionales",
+      "description": "Banca Web y Móvil / SWIFT y otros",
+      "logo": "https://cdn-icons-png.flaticon.com/512/8802/8802346.png",
+      "date_release": "2023-04-01",
+      "date_revision": "2024-04-01"
+    },
+    {
+      "id": "12345",
+      "name": "Servicio de Prueba 1",
+      "description": "Probando validaciones 1.",
+      "logo": "No hay",
+      "date_release": "2025-05-27",
+      "date_revision": "2026-05-27"
+    },
+    {
+      "id": "567",
+      "name": "Servicio de Prueba 2",
+      "description": "Probando validaciones 2.",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Logo_de_la_Federaci%C3%B3n_Ecuatoriana_de_F%C3%BAtbol_%282%29.svg/1668px-Logo_de_la_Federaci%C3%B3n_Ecuatoriana_de_F%C3%BAtbol_%282%29.svg.png",
+      "date_release": "2025-05-27",
+      "date_revision": "2026-05-27"
+    },
+    {
+      "id": "1234567",
+      "name": "Wellington Pozo",
+      "description": "Servicio de prueba 3",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/5/51/Escuela_Polit%C3%A9cnica_Nacional.png",
+      "date_release": "2025-05-30",
+      "date_revision": "2026-05-30"
+    }
+  ]
+}

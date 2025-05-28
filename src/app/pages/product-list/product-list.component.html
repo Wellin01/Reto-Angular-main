@@ -1,0 +1,113 @@
+<div class="container">
+  <div class="contenedorBotones">
+    <input type="text" placeholder="Buscar..." [(ngModel)]="searchText" (input)="applyFilters()" class="search-input" />
+    <button class="boton-Agregar" (click)="goToAddProduct()">Agregar</button>
+  </div>
+  <div style="overflow-x: auto;">
+    <table class="products-table desktop-only">
+      <thead>
+        <tr>
+          <th>Logo</th>
+          <th>Nombre del producto</th>
+          <th>
+            <div class="conticon">
+              <p>Descripción</p>
+              <span class="tooltip-icon">
+                <span class="material-symbols-outlined">info</span>
+                <span class="tooltip-text">Breve resumen del producto o servicio.</span>
+              </span>
+            </div>
+          </th>
+          <th>
+            <div class="conticon">
+              <p>Fecha de liberación</p>
+              <span class="tooltip-icon">
+                <span class="material-symbols-outlined">info</span>
+                <span class="tooltip-text">Fecha en que el producto estará disponible.</span>
+              </span>
+            </div>
+          </th>
+          <th>
+            <div class="conticon">
+              <p>Fecha de restructuración</p>
+              <span class="tooltip-icon">
+                <span class="material-symbols-outlined">info</span>
+                <span class="tooltip-text">Fecha prevista para revisión o actual.</span>
+              </span>
+            </div>
+          </th>
+          <th>
+            <div class="conticon">
+              <p>Acciones</p>
+              <span class="tooltip-icon">
+                <span class="material-symbols-outlined">info</span>
+                <span class="tooltip-text">Editar/Eliminar</span>
+              </span>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of paginatedProducts">
+          <td>
+            <img [src]="product.logo || defaultLogo" (error)="onLogoError($event)" alt="logo" class="logo" />
+          </td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.description }}</td>
+          <td>{{ formatDate(product.date_release) }}</td>
+          <td>{{ formatDate(product.date_revision) }}</td>
+          <td class="menu-cell">
+            <div class="menu-wrapper">
+              <button class="menu-button" (click)="toggleMenu(product.id)">⋮</button>
+              <div class="menu-options" *ngIf="activeMenuId === product.id">
+                <button (click)="editProduct(product.id)">Editar</button>
+                <button (click)="confirmDelete(product.id)">Eliminar</button>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="cards-container mobile-only">
+      <div class="product-card" *ngFor="let product of paginatedProducts">
+        <div class="card-header">
+          <img [src]="product.logo || defaultLogo" (error)="onLogoError($event)" alt="logo" class="card-logo" />
+          <h4>{{ product.name }}</h4>
+        </div>
+        <p><strong>Descripción:</strong> {{ product.description }}</p>
+        <p><strong>Fecha de liberación:</strong> {{ formatDate(product.date_release) }}</p>
+        <p><strong>Fecha de revisión:</strong> {{ formatDate(product.date_revision) }}</p>
+        <div class="card-actions">
+          <button (click)="editProduct(product.id)">Editar</button>
+          <button (click)="confirmDelete(product.id)">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pagination">
+    <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">
+      ◀
+    </button>
+
+    <button *ngFor="let page of getPageNumbers()" [class.active]="page === currentPage" (click)="changePage(page)">
+      Pág. {{ page }}
+    </button>
+
+    <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">
+      ▶
+    </button>
+  </div>
+
+  <div class="footer">
+    <p>{{ filteredProducts.length }} Resultados</p>
+    <select [(ngModel)]="itemsToShow" (change)="applyFilters()">
+      <option *ngFor="let opt of [5, 10, 20]" [value]="opt">{{ opt }}</option>
+    </select>
+  </div>
+
+  <app-confirm-modal *ngIf="showModal" [message]="'¿Estás seguro de eliminar este producto?'"
+    (onCancel)="handleCancel()" (onConfirm)="handleConfirm()">
+  </app-confirm-modal>
+</div>

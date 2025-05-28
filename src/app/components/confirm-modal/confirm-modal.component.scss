@@ -1,0 +1,64 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(112, 112, 112, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal {
+    background: #fff;
+    padding: 2.5rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 520px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+h3 {
+    font-size: 1.4rem;
+    color: #003366;
+    margin-bottom: 1.8rem;
+    font-weight: 600;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+button {
+    padding: 0.75rem 1.8rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cancel {
+    background-color: #eaeaea;
+    color: #003366;
+}
+
+.cancel:hover {
+    background-color: #dcdcdc;
+}
+
+.confirm {
+    background-color: #ffd600;
+    color: #003366;
+}
+
+.confirm:hover {
+    background-color: #ffcc00;
+}

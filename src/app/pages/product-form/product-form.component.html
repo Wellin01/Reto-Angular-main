@@ -1,0 +1,109 @@
+<div class="form-container">
+  <h2>{{ editing ? 'Editar Producto' : 'Agregar Producto' }}</h2>
+
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="form-group">
+        <label for="id">ID</label>
+        <input id="id" formControlName="id" type="text" />
+        <div class="error"
+          *ngIf="productForm.get('id')?.invalid && productForm.get('id')?.touched || productForm.get('id')?.dirty">
+          <small *ngIf="productForm.get('id')?.errors?.['required']">* Campo obligatorio.</small>
+          <small *ngIf="productForm.get('id')?.errors?.['minlength']">Mínimo 3 caracteres.</small>
+          <small *ngIf="productForm.get('id')?.errors?.['maxlength']">Máximo 10 caracteres.</small>
+          <small *ngIf="productForm.get('id')?.errors?.['idExists']">❌ ID no válido! ya existe un ID igual.</small>
+        </div>
+        <div class="success" *ngIf="productForm.get('id')?.valid && productForm.get('id')?.touched">
+          <small style="color: green;">✅ ID válido!</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="name">Nombre</label>
+        <input id="name" formControlName="name" type="text" />
+        <div class="error"
+          *ngIf="productForm.get('name')?.invalid && productForm.get('name')?.touched || productForm.get('name')?.dirty">
+          <small *ngIf="productForm.get('name')?.errors?.['required']">* Campo obligatorio.</small>
+          <small *ngIf="productForm.get('name')?.errors?.['minlength']">Mínimo 5 caracteres.</small>
+          <small *ngIf="productForm.get('name')?.errors?.['maxlength']">Máximo 100 caracteres.</small>
+        </div>
+        <div class="success" *ngIf="productForm.get('name')?.valid && productForm.get('name')?.touched">
+          <small style="color: green;">✅ Nombre válido!</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group">
+        <label for="description">Descripción</label>
+        <textarea id="description" formControlName="description" type="text"></textarea>
+        <div class="error"
+          *ngIf="productForm.get('description')?.invalid && productForm.get('description')?.touched || productForm.get('description')?.dirty">
+          <small *ngIf="productForm.get('description')?.errors?.['required']">* Campo obligatorio.</small>
+          <small *ngIf="productForm.get('description')?.errors?.['minlength']">Mínimo 10 caracteres.</small>
+          <small *ngIf="productForm.get('description')?.errors?.['maxlength']">Máximo 200 caracteres.</small>
+        </div>
+        <div class="success" *ngIf="productForm.get('description')?.valid && productForm.get('description')?.touched">
+          <small style="color: green;">✅ Desccripción válida!</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="logo">Logo (URL)</label>
+        <input id="logo" formControlName="logo" type="text" />
+        <div class="error" *ngIf="productForm.get('logo')?.touched && productForm.get('logo')?.invalid">
+          <small>Campo obligatorio.</small>
+        </div>
+        <div class="success" *ngIf="productForm.get('logo')?.valid && productForm.get('logo')?.touched">
+          <small style="color: green;">✅ Se ha agredado un URL, si no es válido se agregará un logo por defecto!</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group">
+        <label for="date_release">Fecha Liberación</label>
+        <input id="date_release" formControlName="date_release" type="date" />
+        <div class="error" *ngIf="productForm.get('date_release')?.dirty && productForm.get('date_release')?.invalid">
+          <small *ngIf="productForm.get('date_release')?.errors?.['required']">Campo obligatorio.</small>
+          <small *ngIf="productForm.get('date_release')?.errors?.['releaseDateInvalid']">Debe ser igual o mayor a la
+            fecha actual.</small>
+        </div>
+        <div class="success" *ngIf="productForm.get('date_release')?.valid && productForm.get('date_release')?.dirty">
+          <small style="color: green;">✅ Fecha de liberación válida!</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="date_revision">Fecha Revisión</label>
+        <input id="date_revision" formControlName="date_revision" type="date" />
+        <div class="info-validacion">
+          <ng-container
+            *ngIf="!productForm.errors?.['revisionDateInvalid'] && productForm.get('date_release')?.value && productForm.get('date_revision')?.value; else errorFecha">
+            <small style="color: green;">✅ La fecha de revisión es exactamente un año después de la fecha de
+              liberación.</small>
+          </ng-container>
+
+          <ng-template #errorFecha>
+            <div *ngIf="productForm.errors?.['revisionDateInvalid']">
+              <small style="color: red;">❌ La fecha de revisión debe ser exactamente 1 año después de la fecha de
+                liberación.</small>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-buttons-row">
+      <div class="form-buttons-left">
+        <button type="button" class="btn-back" (click)="goBack()">↩ Atrás</button>
+      </div>
+
+      <div class="form-buttons-right">
+        <button type="button" class="btn-reset" (click)="resetForm()">Reiniciar</button>
+        <button type="submit" class="btn-submit">{{ editing ? 'Actualizar' : 'Agregar' }}</button>
+      </div>
+    </div>
+  </form>
+  <app-success-modal *ngIf="showSuccessModal" [message]="successMessage" (onClose)="onModalClose()"></app-success-modal>
+</div>
